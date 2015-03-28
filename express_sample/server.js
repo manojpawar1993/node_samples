@@ -4,6 +4,8 @@ var bodyParser = require('body-parser');
 var multer = require('multer');
 var validator = require('express-validator');
 
+// https://github.com/naikparag/node_samples/tree/master/express_sample
+
 var emp_list = [];
 
 server.use(bodyParser.json()); // for parsing application/json
@@ -23,11 +25,6 @@ server.get('/employees', function(req, res){
 
 // app specific routing
 server.post('/employees', function(req, res) {
-    // console.log(req.body);
-    // console.log(req.query);
-    // res.send("ok");
-    // res.send("hello " + req.body.name);
-    // 
     
     //req.assert('email', 'required').notEmpty();
     req.assert('email', 'valid email required.').isEmail();

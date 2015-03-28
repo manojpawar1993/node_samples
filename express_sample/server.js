@@ -1,25 +1,22 @@
 var express = require('express');
 var server = express();
+var bodyParser = require('body-parser');
+var multer = require('multer');
 
+server.use(bodyParser.json()); // for parsing application/json
+server.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+server.use(multer()); // for parsing multipart/form-data
 
-server.get('/', function(request, response) {
-    response.send("hello express. get request");
+// server specific config
+server.use(function(req, res, next) {
+    console.log(req.method, req.url, req.body);
+    next();
 });
 
-server.post('/', function(req, res) {
-    res.send("this is post req");
-});
-
-server.put('/', function(req, res) {
-    res.send("this is put req");
-});
-
-server.delete('/', function(req, res) {
-    res.send("this is delete req");
-});
-
-server.get('/score', function(request, response) {
-    response.send("Duh no more cricket for me");
+// app specific routing
+server.post('/employees', function(req, res) {
+    //console.log(req.body);
+    res.send("hello " + req.body.name);
 })
 
 server.listen(5555);

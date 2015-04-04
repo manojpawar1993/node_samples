@@ -26,9 +26,11 @@ menuSchema
     });
 
 var orderSchema = new Schema({
-    customer: String
+    customer: String,
+    table: String,
+    menu_item: [Schema.Types.Mixed]
 });
 
 // export
 exports.menu = mongoose.model('menu', menuSchema);
-exports.customer = mongoose.model('order', orderSchema);
+exports.order = mongoose.model('order', orderSchema);

@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-// schema
+// Menu
+
 var menuSchema = new Schema({
     name: String,
     cost: Number,
@@ -25,10 +26,14 @@ menuSchema
         return this.name + ' will cost you ' + this.cost;
     });
 
+
+// Order
+
 var orderSchema = new Schema({
     customer: String,
     table: String,
-    menu_item: [Schema.Types.Mixed]
+    total_cost: Number,
+    menu_items: [Schema.Types.Mixed]
 });
 
 // export
